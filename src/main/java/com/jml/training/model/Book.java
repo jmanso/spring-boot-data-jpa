@@ -1,10 +1,10 @@
 package com.jml.training.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements Serializable {
+
+	private static final long serialVersionUID = -3372729314022124110L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +36,7 @@ public class Book {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date publishDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	@JsonIgnore
 	private Customer customer;
@@ -85,6 +87,9 @@ public class Book {
 	}
 
 	public void setCustomer(Customer customer) {
+		if (!customer.getBooks().contains(this)) {
+			customer.getBooks().add(this);
+		}
 		this.customer = customer;
 	}
 

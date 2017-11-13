@@ -8,6 +8,6 @@ import com.jml.training.model.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 	
-	List<Book> findBooksByCustomer(int customerId);
+	List<Book> findBooksByCustomerId(int customerId);
 
 }

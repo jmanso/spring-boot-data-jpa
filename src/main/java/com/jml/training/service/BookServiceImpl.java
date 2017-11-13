@@ -18,12 +18,12 @@ public class BookServiceImpl implements BookService {
 	private BookRepository bookRepository;
 
 	@Override
-	public List<Book> getBooks() {
+	public List<Book> findBooks() {
 		return bookRepository.findAll();
 	}
 
 	@Override
-	public Book getBook(int id) {
+	public Book findBook(int id) {
 		return bookRepository.findOne(id);
 	}
 
@@ -33,8 +33,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> findBooksByCustomer(Customer customer) {
-		return bookRepository.findBooksByCustomer(customer.getId());
+	public List<Book> findByCustomerId(Customer customer) {
+		return bookRepository.findBooksByCustomerId(customer.getId());
 	}
 	
 }

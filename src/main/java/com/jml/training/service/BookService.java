@@ -7,11 +7,11 @@ import com.jml.training.model.Customer;
 
 public interface BookService {
 	
-	List<Book> getBooks();
+	List<Book> findBooks();
 	
-	public List<Book> findBooksByCustomer(Customer customer);
+	public List<Book> findByCustomerId(Customer customer);
 	
-	Book getBook(int id);
+	Book findBook(int id);
 	
 	Book saveBook(Book book);
 

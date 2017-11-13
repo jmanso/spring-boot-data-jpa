@@ -25,18 +25,18 @@ public class BookController {
 
 	@GetMapping(value = "/all")
 	public List<Book> getBooks() {
-		return bookService.getBooks();
+		return bookService.findBooks();
 	}
 
 	@GetMapping(value = "/{bookId}")
 	public Book getBook(@PathVariable("bookId") final int id) {
-		return bookService.getBook(id);
+		return bookService.findBook(id);
 	}
 	
 	@GetMapping(value = "/customer/{customerId}")
 	public List<Book> getBooksByCustomer(@PathVariable("customerId") final int customerId) {
 		Customer customer = customerService.findCustomerById(customerId); 
-		return bookService.findBooksByCustomer(customer);
+		return bookService.findByCustomerId(customer);
 	}
 	
 }

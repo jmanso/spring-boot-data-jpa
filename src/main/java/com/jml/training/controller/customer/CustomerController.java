@@ -24,11 +24,6 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@GetMapping(value="/greeting/{name}")
-	public String greetings(@PathVariable("name") final String customer) {
-		return String.format("Hello %s", customer);
-	}
-	
 	@GetMapping(value="/all")
 	public List<Customer> getCustomers() {
 		return customerService.findCustomer();
