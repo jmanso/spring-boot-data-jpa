@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jml.training.model.Address;
+import com.jml.training.model.Customer;
 import com.jml.training.repository.AddressRepository;
 
 @Service
-@Transactional
 public class AddressServiceImpl implements AddressService {
 	
 	@Autowired
@@ -20,6 +20,12 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
+	public Address findByCustomer(Customer customer) {
+		return addressRepository.findByCustomerId(customer.getId());
+	}
+	
+	@Override
+	@Transactional
 	public Address saveAddress(Address address) {
 		return addressRepository.save(address);
 	}

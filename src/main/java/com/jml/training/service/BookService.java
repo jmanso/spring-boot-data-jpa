@@ -9,7 +9,7 @@ public interface BookService {
 	
 	List<Book> findBooks();
 	
-	public List<Book> findByCustomerId(Customer customer);
+	List<Book> findByCustomerId(Customer customer);
 	
 	Book findBook(int id);
 	

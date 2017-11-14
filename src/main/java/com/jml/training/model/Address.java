@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,17 +31,17 @@ public class Address implements Serializable {
 	private String postalCode;
 
 	private String city;
-	
+
 	private String country;
-	
-	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+
+	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Customer customer;
-	
+
 	public Address() {
-	
+
 	}
-	
+
 	public Address(String street, String postalCode, String city, String country) {
 		this.street = street;
 		this.postalCode = postalCode;

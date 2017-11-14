@@ -3,8 +3,6 @@ package com.jml.training.SpringDataJPA;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -38,11 +36,10 @@ public class SpringDataJpaApplication {
 	public CommandLineRunner run() {
 		return args -> {
 			dataSave();
-//			showData();						
+			showData();						
 		};
 	}
 	
-	@Transactional
 	public void dataSave() {
 		Customer customer1 = new Customer("Customer1", "Customer1");
 		customer1.addBooks(new Book("Book1", 11.0, new Date()));
@@ -66,6 +63,6 @@ public class SpringDataJpaApplication {
 		
 		System.out.println("Book List");		
 		List<Book> bookList = bookService.findBooks();
-		bookList.forEach(System.out::println);		
+		bookList.forEach(System.out::println);	
 	}
 }

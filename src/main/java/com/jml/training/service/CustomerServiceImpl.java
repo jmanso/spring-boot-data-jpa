@@ -12,7 +12,6 @@ import com.jml.training.model.Customer;
 import com.jml.training.repository.CustomerRepository;
 
 @Service
-@Transactional
 public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
@@ -34,11 +33,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
+	@Transactional
 	public Customer saveCustomer(Customer customer) {
 		return customerRepository.save(customer);
 	}
 	
 	@Override
+	@Transactional
 	public Customer updateCustomer(Customer customer) {
 		return customerRepository.save(customer);
 	}

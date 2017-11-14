@@ -1,1 +1,1 @@
-# spring-boot-jpa
+# spring-boot-jpa & spring data JPA

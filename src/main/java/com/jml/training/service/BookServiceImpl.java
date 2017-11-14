@@ -11,7 +11,6 @@ import com.jml.training.model.Customer;
 import com.jml.training.repository.BookRepository;
 
 @Service
-@Transactional
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
@@ -28,6 +27,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public Book saveBook(Book book) {
 		return bookRepository.save(book);		
 	}

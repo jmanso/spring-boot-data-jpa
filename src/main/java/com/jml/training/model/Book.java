@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class Book implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date publishDate;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	@JsonIgnore
 	private Customer customer;
@@ -95,7 +96,7 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", publishDate=" + publishDate + "]";
+		return "Book [title=" + title + ", price=" + price + ", publishDate=" + publishDate + "]";
 	}
 
 }

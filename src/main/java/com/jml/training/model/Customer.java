@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,31 +21,31 @@ public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 5763422568547501233L;
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="customer_id")
+	@Column(name = "customer_id")
 	private int id;
-	
+
 	private String name;
-	
+
 	private String lastName;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<Book> books = new ArrayList<Book>();
-	
-	@OneToOne(fetch = FetchType.EAGER)
+
+	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
 
 	public Customer() {
 
 	}
-	
+
 	public Customer(String name, String lastName) {
 		this.name = name;
 		this.lastName = lastName;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -70,20 +69,28 @@ public class Customer implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public List<Book> getBooks() {
 		return books;
 	}
 
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	public void addBooks(Book book) {
-		if (book.getCustomer() != this) {
+		if (!books.contains(book)) {
+			books.add(book);
 			book.setCustomer(this);
 		}
-        this.books.add(book);
-    }
-	
+	}
+
 	public Address getAddress() {
 		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public void addAddress(Address address) {
